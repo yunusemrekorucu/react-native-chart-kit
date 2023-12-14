@@ -62,10 +62,10 @@
     }
   },
   "license": "MIT",
-  "homepage": "https://github.com/indiespirit/react-native-chart-kit",
+  "homepage": "https://github.com/yunusemrq/react-native-chart-kit",
   "repository": {
     "type": "git",
-    "url": "https://github.com/indiespirit/react-native-chart-kit"
+    "url": "https://github.com/yunusemrq/react-native-chart-kit"
   },
   "resolutions": {
     "@types/react": "16.14.8"

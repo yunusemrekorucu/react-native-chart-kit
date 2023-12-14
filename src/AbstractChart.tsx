@@ -22,6 +22,7 @@ export interface AbstractChartConfig extends ChartConfig {
   width?: number;
   height?: number;
   paddingTop?: number;
+  left?: number;
   paddingRight?: number;
   horizontalLabelRotation?: number;
   formatYLabel?: (yLabel: string) => string;
@@ -44,7 +45,9 @@ class AbstractChart<
 > extends Component<AbstractChartProps & IProps, AbstractChartState & IState> {
   calcScaler = (data: number[]) => {
     if (this.props.fromZero && this.props.fromNumber) {
-      return Math.max(...data, this.props.fromNumber) - Math.min(...data, 0) || 1;
+      return (
+        Math.max(...data, this.props.fromNumber) - Math.min(...data, 0) || 1
+      );
     } else if (this.props.fromZero) {
       return Math.max(...data, 0) - Math.min(...data, 0) || 1;
     } else if (this.props.fromNumber) {
