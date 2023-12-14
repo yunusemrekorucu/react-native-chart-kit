@@ -76,17 +76,17 @@ class BarChart extends AbstractChart<BarChartProps, BarChartState> {
     | "barRadius"
     | "color"
   > & {
-    data: number[];
+    data: any;
     withCustomBarColorFromData: boolean;
   }) => {
     const baseHeight = this.calcBaseHeight(data, height);
 
-    var isSecondData = data?.datasets[1];
+    var isSecondData = data?.datasets?.[1];
     const positionLeft = isSecondData ? 6 : 0;
 
-    return data?.map((x, i) => {
+    return data.map((x, i) => {
       const barHeight = this.calcHeight(x, data, height);
-      const barWidth = 32 * this.getBarPercentage();
+      var barWidth = 32 * (isSecondData ? 0.4 : this.getBarPercentage());
       return (
         <Rect
           key={Math.random()}
@@ -94,7 +94,7 @@ class BarChart extends AbstractChart<BarChartProps, BarChartState> {
             paddingRight +
             (i * (width - paddingRight)) / data.length +
             barWidth / 2 -
-            positionLeft -
+            positionLeft +
             left
           }
           y={
@@ -104,7 +104,11 @@ class BarChart extends AbstractChart<BarChartProps, BarChartState> {
           rx={barRadius}
           width={barWidth}
           height={(Math.abs(barHeight) / 4) * 3}
-          fill={withCustomBarColorFromData ? `url(#customColor_0_${i})` : color}
+          fill={
+            withCustomBarColorFromData
+              ? `url(#customColor_0_${i})`
+              : (color as never)
+          }
         />
       );
     });
@@ -122,15 +126,15 @@ class BarChart extends AbstractChart<BarChartProps, BarChartState> {
     Omit<AbstractChartConfig, "data">,
     "width" | "height" | "paddingRight" | "paddingTop" | "color" | "left"
   > & {
-    data: number[];
+    data: any;
   }) => {
     const baseHeight = this.calcBaseHeight(data, height);
 
     return data?.map((x, i) => {
       const barHeight = this.calcHeight(x, data, height);
-      const barWidth = 32 * this.getBarPercentage();
 
       var isSecondData = data?.datasets[1];
+      var barWidth = 32 * (isSecondData ? 0.4 : this.getBarPercentage());
       const positionLeft = isSecondData ? 6 : 0;
       return (
         <Rect
@@ -139,13 +143,13 @@ class BarChart extends AbstractChart<BarChartProps, BarChartState> {
             paddingRight +
             (i * (width - paddingRight)) / data.length +
             barWidth / 2 -
-            positionLeft -
+            positionLeft +
             left
           }
           y={((baseHeight - barHeight) / 4) * 3 + paddingTop}
           width={barWidth}
           height={2}
-          fill={color || this.props.chartConfig.color(0.6)}
+          fill={(color as never) || this.props.chartConfig.color(0.6)}
         />
       );
     });
