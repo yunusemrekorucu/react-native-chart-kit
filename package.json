@@ -1,6 +1,6 @@
 {
   "name": "react-native-chart-kit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "devDependencies": {
     "@types/react-native": "^0.62.13",
     "babel-eslint": "10.x",
@@ -62,10 +62,10 @@
     }
   },
   "license": "MIT",
-  "homepage": "https://github.com/indiespirit/react-native-chart-kit",
+  "homepage": "https://github.com/yunusemrq/react-native-chart-kit",
   "repository": {
     "type": "git",
-    "url": "https://github.com/indiespirit/react-native-chart-kit"
+    "url": "https://github.com/yunusemrq/react-native-chart-kit"
   },
   "resolutions": {
     "@types/react": "16.14.8",
